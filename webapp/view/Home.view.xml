@@ -1,0 +1,48 @@
+<mvc:View controllerName="com.george.project.DarkLight.controller.Home" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<Table id="shipmentTable" items="{shipmentModel>/aShipments}">
+							<headerToolbar>
+								<Toolbar>
+									<content>
+										<Title text="{i18n>Shipments}" level="H2"/>
+									</content>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column>
+									<Text text="{i18n>ShipmentId}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Origin}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Destination}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Status}"/>
+								</Column>
+								<Column hAlign="End"/>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{shipmentModel>code}"/>
+										<Text text="{shipmentModel>origin}"/>
+										<Text text="{shipmentModel>destination}"/>
+										<ObjectStatus text="{shipmentModel>status}"
+											state="{= ${shipmentModel>status} === 'Shipped' ? 'Success' : ${shipmentModel>status} === 'Missing' ? 'Warning' : ${shipmentModel>status} === 'Preparing' ? 'Information' : 'Error'}"
+											icon="{= ${shipmentModel>status} === 'Shipped' ? 'sap-icon://accept' : ${shipmentModel>status} === 'Missing' ? 'sap-icon://status-critical' : ${shipmentModel>status} === 'Preparing' ? 'sap-icon://begin' : 'sap-icon://status-negative'}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
